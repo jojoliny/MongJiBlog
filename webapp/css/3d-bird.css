@@ -1,0 +1,10 @@
+#login{
+	width: 100px;
+	margin: 0 auto;
+	margin-top: 6px;
+}
+#log-form{
+	position: absolute;
+	top: 18%;
+	right: 20%;
+}
