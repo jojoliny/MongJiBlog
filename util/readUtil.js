@@ -1,7 +1,6 @@
 "use strict";
 const fs=require("fs");
 function readFile(path,res){
-    console.log(path);
     fs.readFile(path,function(err,chunk){
         if(err){
             res.writeHead(500);

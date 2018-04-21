@@ -13,3 +13,17 @@ function paramToJson(str){
     var stringObj= "{" +newstr + "\"}";
     return stringObj;
 }
+
+function ajaxevent(json,url,callback) {
+    $.ajax({
+        data:json,
+        type:"post",
+        url:url,
+        async:false,
+        success:function (data) {
+            var json = strToJson(data);
+            callback(json);
+        },
+        error:function () {}
+    });
+}

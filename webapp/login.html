@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/login.css" />
 </head>
 <body>
+<div id="warningbar"></div>
 <div id="sky">
     <div class="bird">
         <div class="wind"></div>
@@ -35,7 +36,12 @@
         </div>
     </div>
 </div>
-    <form id="log-form" class="form" onsubmit="return false">
+<script>
+    $(function (){
+        $("[data-toggle='popover']").popover();
+    });
+</script>
+    <form id="log-form" class="form" onsubmit="return false" action="#" method="post">
         <div class="form-group">
             <label for="name">用户名</label>
             <input type="text" class="form-control" name="name" id="name">

@@ -12,14 +12,21 @@ $(function(){
             data:json,
             type:"post",
             async:false,
-            success:function(){
-
+            success:function(data){
+                console.log(data);
+                var datajson=strToJson(data);
+                $("#warningbar").text(datajson.loginMsg).slideDown(600);
+                setTimeout(function(){
+                    $("#warningbar").slideUp(200);
+                },1500);
+                if(datajson.result=="success"){
+                    setTimeout(function(){
+                        window.location.href="../regist.html";
+                    },2300);
+                }
             },
-            error:function () {
-
-            }
-        }
-        );
+            error:function (data) { }
+        });
     });
 
 });

@@ -1,4 +1,16 @@
 body{
+  #warningbar{
+    position:fixed;
+    top: 0;
+    width: 100%;
+    height: 2.5em;
+    background-color: #4f9fcf;
+    color: white;
+    line-height: 2.5em;
+    vertical-align: middle;
+    padding:0 2.5em;
+    display:none;
+  }
   .form{
     position: absolute;
     top: 18%;
