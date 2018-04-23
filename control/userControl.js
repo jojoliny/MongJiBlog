@@ -10,7 +10,7 @@ function login(fields,res){
        }else{
            if(results[0].password==fields.pwd){
                res.writeHead(200);
-               res.end("{loginMsg:'登录成功',result:'success'}");
+               res.end("{loginMsg:'登录成功',result:'success',userId:'"+results[0].id+"'}");
            }else{
                res.writeHead(200);
                res.end("{loginMsg:'密码错误',result:'fault'}");

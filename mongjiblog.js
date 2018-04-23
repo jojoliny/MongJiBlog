@@ -5,7 +5,8 @@ let http=require("http"),
     url=require("url"),
     readUtil=require("./util/readUtil"),
     formidable =require("formidable"),
-    userControl=require("./control/userControl");
+    userControl=require("./control/userControl"),
+    blogControl=require("./control/blogControl");
 let server=http.createServer(function(req,res){
     let path=url.parse(req.url,true);
     if(path.pathname==="/favicon.ico"){
@@ -16,10 +17,16 @@ let server=http.createServer(function(req,res){
         //获取请求参数
         let form=new formidable.IncomingForm();
         form.parse(req,function(err,fields,files){
-            console.log(fields);
                 userControl.login(fields,res) ;
         });
-    }else{
+    }else if(path.pathname==="/initbloglist"){
+        let form = new formidable.IncomingForm();
+        form.parse(req,function(err,fields,files){
+            console.log("fields --- "+fields.toString());
+            blogControl.initAllBlogs(fields,res);
+        });
+    }
+    else{
         readUtil.readFile(pt.join(__dirname,"webapp",path.pathname),res);
     }
 });

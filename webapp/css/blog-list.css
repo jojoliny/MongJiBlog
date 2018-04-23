@@ -1,0 +1,46 @@
+body .head-nav {
+  width: 100%;
+  background-color: #8997f5;
+  vertical-align: middle;
+  line-height: 3em; }
+  body .head-nav .container .nav-container {
+    margin-right: 1em; }
+    body .head-nav .container .nav-container li:hover {
+      background-color: transparent; }
+    body .head-nav .container .nav-container .dropdown {
+      padding: 0; }
+      body .head-nav .container .nav-container .dropdown #dropdownMenu1 {
+        display: inline-block;
+        float: left;
+        background-color: inherit; }
+        body .head-nav .container .nav-container .dropdown #dropdownMenu1 .head-pic {
+          display: inline-block;
+          height: 3em;
+          width: 3em;
+          background-color: white;
+          border-radius: 1.5em; }
+body .contain {
+  position: relative; }
+  body .contain .blog-list {
+    margin-top: 2em; }
+    body .contain .blog-list .blog-breviary .panel-body {
+      padding-top: 0.5em;
+      padding-bottom: 0.5em; }
+      body .contain .blog-list .blog-breviary .panel-body .title {
+        display: inline-block; }
+    body .contain .blog-list .blog-breviary .panel-footer {
+      height: 7.5em;
+      position: relative;
+      top: 0;
+      left: 0; }
+      body .contain .blog-list .blog-breviary .panel-footer .edit {
+        position: absolute;
+        right: 15px;
+        bottom: 10px; }
+  body .contain .type-list {
+    position: absolute;
+    right: 1em; }
+    body .contain .type-list a.dropdown-toggle {
+      font-size: 1.5em; }
+
+/*# sourceMappingURL=blog-list.css.map */
