@@ -1,25 +1,75 @@
 "use strict";
 const blogDao=require("../dao/blogDao");
-function initAllBlogs(fields,res){
+
+function initAllBlogs(pageIndex,fields,res){
     //json用于传递数据，存储博客数据
     let json={};
-    blogDao.allBlogs(fields.userId,function(results){
-    //   results是json数组，json->string: JSON.stringify(results)
-    //    将数据提取到Array
-        var array=[];
-        //[{"id":1,"userId":1,"cateId":1,"title":"test","content":{"type":"Buffer","data":[116,101,115,116]},"summery":"summery1","flag":null,"creattime":"2018-04-23T08:35:22.000Z"},{"id":2,"userId":1,"cateId":2,"title":"test2","content":{"type":"Buffer","data":[116,101,115,116,50]},"summery":"summery2","flag":null,"creattime":"2018-04-23T08:48:09.000Z"}]
-        console.log("results "+typeof(results)+" "+JSON.stringify(results));
+    pageIndex=parseInt(pageIndex);
+    let start=(pageIndex-1)*10;//limit start,end;
+    blogDao.queryCount(fields.userId,function(result1){
+        let count=result1[0]["count(*)"];
+        let sub=count-start;
+        let end=sub/10>1?(start+10):(start+sub%10);
+        json.count=Math.ceil(count/10);
+        //将查询到的数据放入blogs中
+        let blogs=[];
+        blogDao.certainBlogs(fields.userId,start,end,function(results2){
+            results2.forEach(function (result) {
+                blogs[blogs.length]={
+                    blogId:result.id,
+                    title:result.title,
+                    summery:result.summery,
+                    cate:result.catename
+                }
+            });
+            json.blogs=blogs;
+            //将数据传到前台
+            res.writeHead(200);
+            res.end(JSON.stringify(json));
+        });
+    });
+}
+function initType(fields,res){
+    let json={};
+    blogDao.queryOnlyCate(fields.userId,function(results){
+        let cates=[];
         results.forEach(function(result){
-            array[array.length]={
-                blogId:result.id,
-                title:result.title,
-                summery:result.summery,
-                cateId:result.cateId
+            cates[cates.length]={
+                cate:result.catename
             }
         });
-        json.item=array;
-        //将数据传到前台
+        json.cates=cates;
+        res.writeHead(200);
         res.end(JSON.stringify(json));
     });
 }
-module.exports={initAllBlogs};
+//分页+博客类型
+function initBlogs(category,pageIndex,fields,res){
+    let json={};
+    pageIndex=parseInt(pageIndex);
+    let start=(pageIndex-1)*10;//limit start,end;
+    blogDao.queryCountByCate(category,fields.userId,function(result1){
+        let count=result1[0]["count(*)"];
+        let sub=count-start;
+        let end=sub/10>1?(start+10):(start+sub%10);
+        json.count=Math.ceil(count/10);
+        //将查询到的数据放入blogs中
+        let blogs=[];
+        blogDao.certainBlogsByCate(category,fields.userId,start,end,function(results2){
+            results2.forEach(function (result) {
+                blogs[blogs.length]={
+                    blogId:result.id,
+                    title:result.title,
+                    summery:result.summery,
+                    cate:result.catename
+                }
+            });
+            json.blogs=blogs;
+            //将数据传到前台
+            res.writeHead(200);
+            res.end(JSON.stringify(json));
+        });
+    });
+}
+
+module.exports={initAllBlogs,initType,initBlogs};

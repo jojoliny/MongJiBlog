@@ -19,6 +19,10 @@ body .head-nav {
           width: 3em;
           background-color: white;
           border-radius: 1.5em; }
+      body .head-nav .container .nav-container .dropdown .dropdown-menu li {
+        padding: 0 1.5em; }
+        body .head-nav .container .nav-container .dropdown .dropdown-menu li span {
+          margin-right: 0.5em; }
 body .contain {
   position: relative; }
   body .contain .blog-list {
@@ -42,5 +46,7 @@ body .contain {
     right: 1em; }
     body .contain .type-list a.dropdown-toggle {
       font-size: 1.5em; }
+  body .contain .page-container {
+    text-align: center; }
 
 /*# sourceMappingURL=blog-list.css.map */

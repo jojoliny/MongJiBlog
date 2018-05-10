@@ -28,6 +28,14 @@ body{
               border-radius: 1.5em;
             }
           }
+          .dropdown-menu{
+            li{
+              padding: 0 1.5em;
+              span{
+                margin-right: 0.5em;
+              }
+            }
+          }
         }
       }
 
@@ -62,6 +70,9 @@ body{
       position:absolute;
       right: 1em;
       a.dropdown-toggle{font-size: 1.5em}
+    }
+    .page-container{
+      text-align: center;
     }
   }
 }

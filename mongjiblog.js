@@ -22,8 +22,17 @@ let server=http.createServer(function(req,res){
     }else if(path.pathname==="/initbloglist"){
         let form = new formidable.IncomingForm();
         form.parse(req,function(err,fields,files){
-            console.log("fields --- "+fields.toString());
-            blogControl.initAllBlogs(fields,res);
+            blogControl.initAllBlogs(path.query.pageIndex,fields,res);
+        });
+    }else if(path.pathname==="/initblogs"){
+        let form = new formidable.IncomingForm();
+        form.parse(req,function(err,fields,files){
+            blogControl.initBlogs(path.query.category,path.query.pageIndex,fields,res);
+        });
+    }else if(path.pathname==="/inittype"){
+        let form = new formidable.IncomingForm();
+        form.parse(req,function(err,fields,files){
+           blogControl.initType(fields,res);
         });
     }
     else{
